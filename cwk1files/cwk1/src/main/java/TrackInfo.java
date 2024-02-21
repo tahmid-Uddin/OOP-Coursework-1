@@ -1,7 +1,7 @@
 /**
  * Program to provide information on a GPS track stored in a file.
  *
- * @author YOUR NAME HERE
+ * @author Tahmid Fahim Uddin
  */
 public class TrackInfo {
   public static void main(String[] args) {

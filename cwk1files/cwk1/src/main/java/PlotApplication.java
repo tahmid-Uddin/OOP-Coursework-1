@@ -2,7 +2,7 @@
  * JavaFX application to plot elevations of a GPS track, for the
  * Advanced task of COMP1721 Coursework 1.
  *
- * @author YOUR NAME HERE
+ * @author Tahmid Fahim Uddin
  */
 public class PlotApplication {
 
