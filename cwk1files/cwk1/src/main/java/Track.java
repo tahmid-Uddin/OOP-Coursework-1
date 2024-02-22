@@ -1,3 +1,4 @@
+
 /**
  * Represents a point in space and time, recorded by a GPS sensor.
  *
@@ -13,15 +14,13 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.time.temporal.ChronoUnit;
- 
-
 
 public class Track {
   // TODO: Create a stub for the constructor
   private List<Point> pointsList = new ArrayList<Point>();
 
   public Track() {
-    
+
   }
 
   public Track(String filename) throws IOException {
@@ -34,7 +33,7 @@ public class Track {
 
     Path path = Paths.get(fileName);
     BufferedReader input = Files.newBufferedReader(path);
-    
+
     String line = input.readLine();
     line = input.readLine();
 
@@ -45,7 +44,8 @@ public class Track {
         throw new GPSException("Invalid number of variables");
       }
       String[] pointData = line.split(",");
-      Point point = new Point(ZonedDateTime.parse(pointData[0]), Double.parseDouble(pointData[1]), Double.parseDouble(pointData[2]), Double.parseDouble(pointData[3]));
+      Point point = new Point(ZonedDateTime.parse(pointData[0]), Double.parseDouble(pointData[1]),
+          Double.parseDouble(pointData[2]), Double.parseDouble(pointData[3]));
       add(point);
 
       line = input.readLine();
@@ -78,11 +78,11 @@ public class Track {
   }
 
   // TODO: Create a stub for lowestPoint()
-  public Point lowestPoint() { 
+  public Point lowestPoint() {
     if (pointsList.size() == 0) {
       throw new GPSException("Empty List");
     }
-    
+
     double lowestelevation = get(0).getElevation();
     Point lowestPoint = get(0);
 
@@ -100,7 +100,7 @@ public class Track {
   public Point highestPoint() {
     if (pointsList.size() == 0) {
       throw new GPSException("Empty List");
-    } 
+    }
 
     double highestelevation = get(0).getElevation();
     Point highestPoint = get(0);
@@ -144,5 +144,5 @@ public class Track {
 
     return totalDistance / totalTime;
   }
-  
+
 }

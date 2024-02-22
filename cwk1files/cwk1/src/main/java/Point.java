@@ -7,7 +7,6 @@ import static java.lang.Math.sin;
 import static java.lang.Math.sqrt;
 import static java.lang.Math.toRadians;
 
-
 /**
  * Represents a point in space and time, recorded by a GPS sensor.
  *
@@ -69,9 +68,6 @@ public class Point {
     return formattedstring;
   }
 
-
-
-  
   // IMPORTANT: Do not alter anything beneath this comment!
 
   /**
@@ -90,11 +86,11 @@ public class Point {
     double lambda2 = toRadians(q.getLongitude());
     double delta = abs(lambda1 - lambda2);
 
-    double firstTerm = cos(phi2)*sin(delta);
-    double secondTerm = cos(phi1)*sin(phi2) - sin(phi1)*cos(phi2)*cos(delta);
-    double top = sqrt(firstTerm*firstTerm + secondTerm*secondTerm);
+    double firstTerm = cos(phi2) * sin(delta);
+    double secondTerm = cos(phi1) * sin(phi2) - sin(phi1) * cos(phi2) * cos(delta);
+    double top = sqrt(firstTerm * firstTerm + secondTerm * secondTerm);
 
-    double bottom = sin(phi1)*sin(phi2) + cos(phi1)*cos(phi2)*cos(delta);
+    double bottom = sin(phi1) * sin(phi2) + cos(phi1) * cos(phi2) * cos(delta);
 
     return MEAN_EARTH_RADIUS * atan2(top, bottom);
   }
