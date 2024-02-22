@@ -44,9 +44,10 @@ public class Track {
         input.close();
         throw new GPSException("Invalid number of variables");
       }
-
-      Point point = new Point(ZonedDateTime.parse(line.split(",")[0]), Double.parseDouble(line.split(",")[1]), Double.parseDouble(line.split(",")[2]), Double.parseDouble(line.split(",")[3]));
+      String[] pointData = line.split(",");
+      Point point = new Point(ZonedDateTime.parse(pointData[0]), Double.parseDouble(pointData[1]), Double.parseDouble(pointData[2]), Double.parseDouble(pointData[3]));
       add(point);
+
       line = input.readLine();
     }
 
@@ -83,16 +84,16 @@ public class Track {
     }
     
     double lowestelevation = get(0).getElevation();
-    Point lowesPoint = get(0);
+    Point lowestPoint = get(0);
 
     for (int i = 1; i < pointsList.size(); i++) {
       if (get(i).getElevation() < lowestelevation) {
         lowestelevation = get(i).getElevation();
-        lowesPoint = get(i);
+        lowestPoint = get(i);
       }
     }
 
-    return lowesPoint;
+    return lowestPoint;
   }
 
   // TODO: Create a stub for highestPoint()
@@ -135,12 +136,13 @@ public class Track {
     }
 
     double totalDistance = totalDistance();
-    double totalTime = ChronoUnit.SECONDS.between(pointsList.get(0).getTime(), pointsList.get(1).getTime());
+    double totalTime = 0;
 
-    for (int i = 1; i < pointsList.size() - 1; i++) {
+    for (int i = 0; i < pointsList.size() - 1; i++) {
       totalTime = totalTime + ChronoUnit.SECONDS.between(pointsList.get(i).getTime(), pointsList.get(i + 1).getTime());
     }
-    return totalDistance / totalTime;
 
+    return totalDistance / totalTime;
   }
+  
 }
