@@ -27,8 +27,6 @@ public class PlotApplication extends javafx.application.Application {
 
   @Override
   public void start(Stage stage) {
-
-    // Initialising X and Y axis
     NumberAxis yAxis = new NumberAxis(0, Math.round(track.highestPoint().getElevation()) + 5, 5);
     yAxis.setLabel("Elevation (m)");
 
@@ -38,7 +36,6 @@ public class PlotApplication extends javafx.application.Application {
     XYChart.Series series = new XYChart.Series();
     series.setName(fileName);
 
-    // Adding x and y values to the
     double x;
     double y = 0;
     series.getData().add(new XYChart.Data(y, track.get(0).getElevation()));
@@ -50,7 +47,6 @@ public class PlotApplication extends javafx.application.Application {
       series.getData().add(new XYChart.Data(y, x));
     }
 
-    // Creates the linechart and draws it into a new window.
     LineChart linechart = new LineChart(xAxis, yAxis);
     linechart.getData().add(series);
     Group root = new Group(linechart);
