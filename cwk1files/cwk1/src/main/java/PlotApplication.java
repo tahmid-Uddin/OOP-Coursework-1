@@ -27,11 +27,11 @@ public class PlotApplication extends javafx.application.Application {
 
   @Override
   public void start(Stage stage) {
-    NumberAxis yAxis = new NumberAxis(0, Math.round(track.highestPoint().getElevation()) + 5, 5);
-    yAxis.setLabel("Elevation (m)");
-
-    NumberAxis xAxis = new NumberAxis(0, Math.round(track.totalDistance()) + 50, 200);
-    xAxis.setLabel("Distance (m)");
+    NumberAxis xAxis_Distance = new NumberAxis(0, Math.round(track.totalDistance()) + 50, 200);
+    xAxis_Distance.setLabel("Distance (m)");
+    
+    NumberAxis yAxis_Elevation = new NumberAxis(0, Math.round(track.highestPoint().getElevation()) + 5, 5);
+    yAxis_Elevation.setLabel("Elevation (m)");
 
     XYChart.Series series = new XYChart.Series();
     series.setName(fileName);
@@ -47,7 +47,7 @@ public class PlotApplication extends javafx.application.Application {
       series.getData().add(new XYChart.Data(y, x));
     }
 
-    LineChart linechart = new LineChart(xAxis, yAxis);
+    LineChart linechart = new LineChart(xAxis_Distance, yAxis_Elevation);
     linechart.getData().add(series);
     Group root = new Group(linechart);
     Scene scene = new Scene(root, 600, 400);
