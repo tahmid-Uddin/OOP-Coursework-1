@@ -14,6 +14,8 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.time.temporal.ChronoUnit;
+import java.io.*;  
+import java.util.Scanner; 
 
 public class Track {
   // TODO: Create a stub for the constructor
@@ -31,24 +33,22 @@ public class Track {
   public void readFile(String fileName) throws IOException {
     pointsList.clear();
 
-    Path path = Paths.get(fileName);
-    BufferedReader input = Files.newBufferedReader(path);
+    File file = new File(fileName);
+    Scanner input = new Scanner(file);
+    String line = input.nextLine(); 
 
-    String line = input.readLine();
-    line = input.readLine();
-
-    while (line != null) {
-
+    while (input.hasNextLine()) {
+      line = input.nextLine();
+      
       if (line.split(",").length != 4) {
         input.close();
         throw new GPSException("Invalid number of variables");
       }
+
       String[] pointData = line.split(",");
       Point point = new Point(ZonedDateTime.parse(pointData[0]), Double.parseDouble(pointData[1]),
           Double.parseDouble(pointData[2]), Double.parseDouble(pointData[3]));
       add(point);
-
-      line = input.readLine();
     }
 
     input.close();
